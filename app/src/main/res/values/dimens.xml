@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="item_adapter_height">75dp</dimen>
+    <dimen name="item_adapter_image_size">40dp</dimen>
+    <dimen name="item_adapter_margin">16dp</dimen>
+    <dimen name="item_adapter_title">16dp</dimen>
+    <dimen name="item_adapter_text">14dp</dimen>
+    <dimen name="app_bar_height">300dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="text_margin">16dp</dimen>
+    <dimen name="snack_radius">5dp</dimen>
+
+    <dimen name="item_title_large">32dp</dimen>
+    <dimen name="item_title">18dp</dimen>
+    <dimen name="item_text">16dp</dimen>
+</resources>
