@@ -1,5 +1,8 @@
 package com.seventhson.rickandmorty.ui.detail
 
+import androidx.compose.runtime.State
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.seventhson.rickandmorty.domain.model.Character
@@ -21,6 +24,12 @@ class DetailViewModel @Inject constructor(
         MutableLiveData<CharacterDetail>()
     }
 
+
+    /*private val _uiState by mutableStateOf<UiState>()
+    val uiState: State<UiState>
+        get() = _uiState*/
+
+
     fun getCharacterDetail(characterId: Int) {
         loading.value = SHOW
         viewModelScope.launch {
@@ -33,9 +42,12 @@ class DetailViewModel @Inject constructor(
                 }
                 .collect { character ->
                     characterDetailLiveData.value = character
+                    //errorMessage.value = mapOf(1 to ("ex.message ?: "))
                     loading.value = DISMISS
                 }
         }
     }
+
+
 
 }

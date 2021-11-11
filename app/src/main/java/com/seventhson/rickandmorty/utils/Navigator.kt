@@ -31,12 +31,16 @@ class Navigator {
     fun goToDetail(
         context: Context,
         characterId: Int,
-        image: ImageView
+        image: ImageView?
     ) {
         val intent = Intent(context, DetailActivity::class.java)
         intent.putExtra(CHARACTER_ID, characterId)
-        val options = ActivityOptionsCompat.makeSceneTransitionAnimation(context as BaseActivity<*>, image, "detailTransition")
-        navigate(context, intent, options)
+        image?.let {
+            val options = ActivityOptionsCompat.makeSceneTransitionAnimation(context as BaseActivity<*>, image, "detailTransition")
+            navigate(context, intent, options)
+        }
+        navigate(context, intent)
+
     }
 
 

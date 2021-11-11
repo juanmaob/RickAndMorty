@@ -9,13 +9,9 @@ data class InfoResponse(
 )
 
 data class CharacterResponse(
-    @SerializedName("id")
     var id: Int?,
-    @SerializedName("name")
     var name: String?,
-    @SerializedName("species")
     var species: String?,
-    @SerializedName("image")
     var image: String?
 )
 
@@ -29,3 +25,4 @@ fun List<CharacterResponse>.toDomain() : List<Character>{
         )
     }
 }
+

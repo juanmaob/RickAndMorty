@@ -15,7 +15,7 @@ import java.util.*
 class DialogUtil {
 
     fun getLoadingDialog(
-        activity: Activity
+        activity: Context
     ) : Dialog {
 
         val dialog = Dialog(activity)
@@ -24,6 +24,25 @@ class DialogUtil {
         dialog.setCancelable(true)
         dialog.setContentView(R.layout.loading_layout)
         return dialog
+    }
+
+    fun showDatePicker(
+        context: Context
+        , onDateSet: (date: String) -> Unit
+    ) {
+        val calendar: Calendar = Calendar.getInstance()
+        val day = calendar.get(Calendar.DAY_OF_MONTH)
+        val month = calendar.get(Calendar.MONTH)
+        val year = calendar.get(Calendar.YEAR)
+        val datePickerDialog = DatePickerDialog(
+            context,
+            { datePicker, year, month, day ->
+                val dateSelected = "$day/${month + 1}/$year"
+                onDateSet(dateSelected)
+            }, year, month, day
+        )
+        datePickerDialog.datePicker.maxDate = System.currentTimeMillis()
+        datePickerDialog.show()
     }
 
 }
