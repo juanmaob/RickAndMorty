@@ -15,15 +15,15 @@ import androidx.compose.ui.unit.dp
 import coil.compose.rememberImagePainter
 import coil.transform.CircleCropTransformation
 import com.seventhson.rickandmorty.R
-import com.seventhson.rickandmorty.domain.model.Character
+import com.seventhson.rickandmorty.domain.model.CharacterList
 
 @Composable
-fun List(state: State<List<Character>?>, onItemClick: (Int) -> Unit) {
+fun List(state: State<CharacterList?>, onItemClick: (Int) -> Unit) {
     LazyColumn (
         modifier = Modifier.fillMaxSize()
     ) {
         state.value?.let {
-            items(it) { character ->
+            items(it.list) { character ->
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
                     modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp).clickable {
