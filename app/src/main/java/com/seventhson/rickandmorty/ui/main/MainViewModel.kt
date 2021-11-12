@@ -19,6 +19,10 @@ class MainViewModel @Inject constructor(
         MutableLiveData<List<Character>>()
     }
 
+    init {
+        getCharacterList()
+    }
+
     fun getCharacterList() {
         loading.value = SHOW
         viewModelScope.launch {

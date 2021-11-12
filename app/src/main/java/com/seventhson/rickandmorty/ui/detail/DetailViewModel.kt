@@ -24,12 +24,6 @@ class DetailViewModel @Inject constructor(
         MutableLiveData<CharacterDetail>()
     }
 
-
-    /*private val _uiState by mutableStateOf<UiState>()
-    val uiState: State<UiState>
-        get() = _uiState*/
-
-
     fun getCharacterDetail(characterId: Int) {
         loading.value = SHOW
         viewModelScope.launch {
