@@ -2,7 +2,7 @@ package com.seventhson.rickandmorty.ui.main
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.seventhson.rickandmorty.domain.model.Character
+import com.seventhson.rickandmorty.domain.model.CharacterList
 import com.seventhson.rickandmorty.domain.useCases.GetCharacterListUseCase
 import com.seventhson.rickandmorty.ui.common.BaseViewModel
 import com.seventhson.rickandmorty.utils.CustomException
@@ -15,13 +15,18 @@ class MainViewModel @Inject constructor(
     private val getCharacterListUseCase: GetCharacterListUseCase
 ) : BaseViewModel() {
 
-    val characterListLiveData: MutableLiveData<List<Character>> by lazy {
-        MutableLiveData<List<Character>>()
+    var nextPage = 2
+
+    val characterListLiveData: MutableLiveData<CharacterList> by lazy {
+        MutableLiveData<CharacterList>()
     }
 
     fun getCharacterList() {
         loading.value = SHOW
+
         viewModelScope.launch {
+
+            getCharacterListUseCase.setParams(characterListLiveData.value?.nextPage)
             getCharacterListUseCase.executeCall()
                 .catch {
                     loading.value = DISMISS

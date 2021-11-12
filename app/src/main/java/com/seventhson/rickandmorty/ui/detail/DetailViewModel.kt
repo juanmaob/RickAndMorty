@@ -1,14 +1,9 @@
 package com.seventhson.rickandmorty.ui.detail
 
-import androidx.compose.runtime.State
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.seventhson.rickandmorty.domain.model.Character
 import com.seventhson.rickandmorty.domain.model.CharacterDetail
 import com.seventhson.rickandmorty.domain.useCases.GetCharacterDetailUseCase
-import com.seventhson.rickandmorty.domain.useCases.GetCharacterListUseCase
 import com.seventhson.rickandmorty.ui.common.BaseViewModel
 import com.seventhson.rickandmorty.utils.CustomException
 import kotlinx.coroutines.flow.catch

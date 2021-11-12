@@ -10,13 +10,14 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.*
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.State
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidViewBinding
 import coil.compose.rememberImagePainter
@@ -24,8 +25,8 @@ import coil.transform.CircleCropTransformation
 import coil.transform.RoundedCornersTransformation
 import com.seventhson.rickandmorty.R
 import com.seventhson.rickandmorty.databinding.ItemCharacterBinding
-import com.seventhson.rickandmorty.domain.model.Character
 import com.seventhson.rickandmorty.domain.model.CharacterDetail
+import com.seventhson.rickandmorty.domain.model.CharacterList
 import com.seventhson.rickandmorty.ui.ui.theme.RickAndMortyTheme
 import com.seventhson.rickandmorty.utils.DialogUtil
 import com.seventhson.rickandmorty.utils.fromUrl
@@ -137,12 +138,12 @@ fun ShowLoading(isLoading: State<Boolean>) {
 
 
 @Composable
-fun Lista(state: State<List<Character>?>, onItemClick: (Int) -> Unit) {
+fun Lista(state: State<CharacterList?>, onItemClick: (Int) -> Unit) {
     LazyColumn (
         modifier = Modifier.fillMaxSize()
             ) {
         state.value?.let {
-            items(it) { character ->
+            items(it.list) { character ->
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
                     modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp).clickable {

@@ -10,13 +10,13 @@ import android.view.MotionEvent
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.foundation.lazy.LazyListState
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
 import com.seventhson.rickandmorty.R
-import java.util.*
 
 fun Context.toast(message: String) = Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
 
@@ -125,3 +125,5 @@ fun EditText.onRightDrawableClicked(onClicked: (view: EditText) -> Unit) {
         hasConsumed
     }
 }
+
+fun LazyListState.isScrolledToTheEnd() = layoutInfo.visibleItemsInfo.lastOrNull()?.index == layoutInfo.totalItemsCount - 1

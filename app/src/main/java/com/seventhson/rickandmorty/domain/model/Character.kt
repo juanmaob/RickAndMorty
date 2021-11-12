@@ -1,6 +1,11 @@
 package com.seventhson.rickandmorty.domain.model
 
 
+data class CharacterList(
+    val nextPage: Int,
+    val list: List<Character>
+)
+
 data class Character(
     var id: Int,
     var name: String,

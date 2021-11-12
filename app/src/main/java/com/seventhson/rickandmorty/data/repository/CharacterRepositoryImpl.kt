@@ -3,8 +3,8 @@ package com.seventhson.rickandmorty.data.repository
 import com.seventhson.rickandmorty.data.database.AppDatabase
 import com.seventhson.rickandmorty.data.network.ApiInterface
 import com.seventhson.rickandmorty.data.network.response.toDomain
-import com.seventhson.rickandmorty.domain.model.Character
 import com.seventhson.rickandmorty.domain.model.CharacterDetail
+import com.seventhson.rickandmorty.domain.model.CharacterList
 import com.seventhson.rickandmorty.domain.repository.CharacterRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
@@ -17,10 +17,10 @@ class CharacterRepositoryImpl @Inject constructor(
     private val apiInterface: ApiInterface
 ) : CharacterRepository, Repository() {
 
-    override fun getCharacters(): Flow<List<Character>> = flow {
-        apiCall { apiInterface.getCharacters() }
-            .transform { infoResponse ->
-                emit(infoResponse.charecterResponseList.toDomain())
+    override fun getCharacters(page: Int): Flow<CharacterList> = flow {
+        apiCall { apiInterface.getCharacters(page) }
+            .transform { response ->
+                emit(response.toDomain())
             }
             .collect { charaterList ->
                 emit(charaterList)
