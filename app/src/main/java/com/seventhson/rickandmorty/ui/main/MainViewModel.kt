@@ -2,6 +2,7 @@ package com.seventhson.rickandmorty.ui.main
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.seventhson.rickandmorty.domain.model.Character
 import com.seventhson.rickandmorty.domain.model.CharacterList
 import com.seventhson.rickandmorty.domain.useCases.GetCharacterListUseCase
 import com.seventhson.rickandmorty.ui.common.BaseViewModel
@@ -15,10 +16,10 @@ class MainViewModel @Inject constructor(
     private val getCharacterListUseCase: GetCharacterListUseCase
 ) : BaseViewModel() {
 
-    var nextPage = 2
+    private val characterListData = CharacterList(1, listOf())
 
-    val characterListLiveData: MutableLiveData<CharacterList> by lazy {
-        MutableLiveData<CharacterList>()
+    val characterListLiveData: MutableLiveData<List<Character>> by lazy {
+        MutableLiveData<List<Character>>()
     }
 
     init {
@@ -30,7 +31,7 @@ class MainViewModel @Inject constructor(
 
         viewModelScope.launch {
 
-            getCharacterListUseCase.setParams(characterListLiveData.value?.nextPage)
+            getCharacterListUseCase.setParams(characterListData.nextPage)
             getCharacterListUseCase.executeCall()
                 .catch {
                     loading.value = DISMISS
@@ -38,7 +39,12 @@ class MainViewModel @Inject constructor(
                     errorMessage.value = mapOf(ex.code to (ex.message ?: ""))
                 }
                 .collect { characterList ->
-                    characterListLiveData.value = characterList
+                    characterListData.apply {
+                        list = characterListData.list.plus(characterList.list)
+                        nextPage = characterList.nextPage
+                    }
+                    characterListLiveData.value = characterListData.list
+
                     loading.value = DISMISS
                 }
         }

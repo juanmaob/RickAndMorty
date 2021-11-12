@@ -5,7 +5,9 @@ import androidx.compose.runtime.livedata.observeAsState
 
 @Composable
 fun MainScreen(viewModel: MainViewModel, onItemClick: (Int) -> Unit) {
-    List(state = viewModel.characterListLiveData.observeAsState()) { id ->
-        onItemClick(id)
-    }
+    List(
+        state = viewModel.characterListLiveData.observeAsState(),
+        onBottomReached = { viewModel.getCharacterList() },
+        onItemClick = onItemClick
+    )
 }

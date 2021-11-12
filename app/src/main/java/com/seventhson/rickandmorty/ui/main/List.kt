@@ -5,6 +5,8 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
@@ -15,20 +17,31 @@ import androidx.compose.ui.unit.dp
 import coil.compose.rememberImagePainter
 import coil.transform.CircleCropTransformation
 import com.seventhson.rickandmorty.R
-import com.seventhson.rickandmorty.domain.model.CharacterList
+import com.seventhson.rickandmorty.domain.model.Character
+import com.seventhson.rickandmorty.utils.isScrolledToTheEnd
 
 @Composable
-fun List(state: State<CharacterList?>, onItemClick: (Int) -> Unit) {
+fun List(
+    state: State<List<Character>?>,
+    onBottomReached: () -> Unit,
+    onItemClick: (Int) -> Unit
+) {
+    val scrollState = rememberLazyListState()
+
     LazyColumn (
+        state = scrollState,
         modifier = Modifier.fillMaxSize()
     ) {
         state.value?.let {
-            items(it.list) { character ->
+            items(it) { character ->
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
-                    modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp).clickable {
-                        onItemClick(character.id)
-                    }
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 16.dp, vertical = 8.dp)
+                        .clickable {
+                            onItemClick(character.id)
+                        }
 
                 ) {
                     Image(
@@ -41,7 +54,9 @@ fun List(state: State<CharacterList?>, onItemClick: (Int) -> Unit) {
                             }),
                         contentDescription = null,
                         contentScale = ContentScale.Crop,
-                        modifier = Modifier.width(42.dp).height(42.dp)
+                        modifier = Modifier
+                            .width(42.dp)
+                            .height(42.dp)
                     )
                     Column (
                         modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp)
@@ -51,8 +66,19 @@ fun List(state: State<CharacterList?>, onItemClick: (Int) -> Unit) {
                     }
                 }
             }
+
+            item {
+                Box(
+                    modifier = Modifier.fillMaxWidth().padding(16.dp),
+                    contentAlignment = Alignment.Center
+                ) {
+                    CircularProgressIndicator(modifier = Modifier.size(32.dp))
+                }
+            }
         }
+    }
 
-
+    if (scrollState.isScrolledToTheEnd()) {
+        onBottomReached()
     }
 }

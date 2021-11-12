@@ -6,6 +6,7 @@ import com.seventhson.rickandmorty.data.network.response.toDomain
 import com.seventhson.rickandmorty.domain.model.CharacterDetail
 import com.seventhson.rickandmorty.domain.model.CharacterList
 import com.seventhson.rickandmorty.domain.repository.CharacterRepository
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flow
@@ -23,6 +24,7 @@ class CharacterRepositoryImpl @Inject constructor(
                 emit(response.toDomain())
             }
             .collect { charaterList ->
+                delay(500)
                 emit(charaterList)
             }
     }

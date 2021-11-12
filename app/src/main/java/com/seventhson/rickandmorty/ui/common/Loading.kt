@@ -5,7 +5,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
 
 @Composable
-fun ShowLoading(isLoading: State<Boolean>) {
+fun Loading(isLoading: State<Boolean>) {
     if (isLoading.value)
         CircularProgressIndicator()
 }

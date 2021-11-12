@@ -32,7 +32,7 @@ fun CharacterListResponse.toDomain() : CharacterList {
                 species = it.species ?: "",
                 image = it.image ?: ""
             )
-        }
+        }.toMutableList()
     )
 }
 
