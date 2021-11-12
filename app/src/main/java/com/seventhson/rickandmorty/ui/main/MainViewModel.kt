@@ -21,6 +21,10 @@ class MainViewModel @Inject constructor(
         MutableLiveData<CharacterList>()
     }
 
+    init {
+        getCharacterList()
+    }
+
     fun getCharacterList() {
         loading.value = SHOW
 

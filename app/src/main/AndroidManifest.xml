@@ -19,11 +19,13 @@
             android:theme="@style/Theme.RickAndMorty.NoActionBar" />
         <activity
             android:name=".ui.detail.DetailActivity"
-            android:theme="@style/AppNoBarTheme.NoActionBar" />
+            android:theme="@style/AppNoBarTheme.NoActionBar"
+            android:configChanges="orientation|screenSize|keyboardHidden"/>
         <activity
             android:name=".ui.main.MainActivity"
             android:exported="true"
-            android:theme="@style/AppNoBarTheme.NoActionBar">
+            android:theme="@style/AppNoBarTheme.NoActionBar"
+            android:configChanges="orientation|screenSize|keyboardHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
