@@ -13,6 +13,7 @@ import androidx.compose.runtime.State
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberImagePainter
 import coil.transform.CircleCropTransformation
@@ -23,6 +24,7 @@ import com.seventhson.rickandmorty.utils.isScrolledToTheEnd
 @Composable
 fun List(
     state: State<List<Character>?>,
+    paddingVertivalDp: Dp,
     onBottomReached: () -> Unit,
     onItemClick: (Int) -> Unit
 ) {
@@ -30,7 +32,8 @@ fun List(
 
     LazyColumn (
         state = scrollState,
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier.fillMaxSize(),
+        contentPadding = PaddingValues(top = paddingVertivalDp)
     ) {
         state.value?.let {
             items(it) { character ->
