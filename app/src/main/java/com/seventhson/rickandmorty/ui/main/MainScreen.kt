@@ -55,7 +55,7 @@ fun Toolbar(height: Dp = 120.dp) {
         Image(
             painter = rememberImagePainter(data = R.drawable.rickmortylogo),
             contentDescription = null,
-            modifier = Modifier.fillMaxHeight(0.8f)//.padding(4.dp)
+            modifier = Modifier.fillMaxHeight(0.8f)
         )
     }
 }
