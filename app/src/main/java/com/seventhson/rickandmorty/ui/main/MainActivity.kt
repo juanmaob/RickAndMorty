@@ -14,7 +14,7 @@ class MainActivity : BaseComposeActivity() {
         setContent {
             RMCompose {
                 MainScreen() {
-                    navigator.goToDetail(this, it, null)
+                    navigator.goToDetail(this, it.id, it.name, it.image, null)
                 }
             }
         }

@@ -11,15 +11,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.rememberImagePainter
 import com.seventhson.rickandmorty.R
+import com.seventhson.rickandmorty.domain.model.Character
 
 @Composable
-fun MainScreen(viewModel: MainViewModel = hiltViewModel(), onItemClick: (Int) -> Unit) {
+fun MainScreen(viewModel: MainViewModel = hiltViewModel(), onItemClick: (Character) -> Unit) {
     val toolbarHeightDp = 80.dp
     
     List(
@@ -34,7 +34,6 @@ fun MainScreen(viewModel: MainViewModel = hiltViewModel(), onItemClick: (Int) ->
     )
 }
 
-@Preview
 @Composable
 fun Toolbar(height: Dp = 120.dp) {
     Box(

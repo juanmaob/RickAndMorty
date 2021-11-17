@@ -1,68 +1,35 @@
 package com.seventhson.rickandmorty.ui.detail
 
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
-import androidx.compose.material.MaterialTheme
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material.Tab
+import androidx.compose.material.TabRow
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.viewinterop.AndroidViewBinding
-import coil.compose.rememberImagePainter
-import coil.transform.RoundedCornersTransformation
-import com.seventhson.rickandmorty.databinding.ItemCharacterBinding
+import com.google.accompanist.pager.ExperimentalPagerApi
+import com.google.accompanist.pager.HorizontalPager
 import com.seventhson.rickandmorty.domain.model.CharacterDetail
-import com.seventhson.rickandmorty.utils.DialogUtil
-import com.seventhson.rickandmorty.utils.fromUrl
 
+@ExperimentalPagerApi
 @Composable
 fun DetailInfo(state: State<CharacterDetail?>) {
     val context = LocalContext.current
     state.value?.let {
         Column(modifier = Modifier.fillMaxSize()) {
 
-            AndroidViewBinding(factory = ItemCharacterBinding::inflate) {
-                ivAvatar.fromUrl(state.value?.image ?: "")
-                tvName.text = state.value?.name
-                tvSpecie.text = state.value?.species
+            TabRow(selectedTabIndex = 0) {
+                Tab(selected = true, onClick = { /*TODO*/ }) {}
+                Tab(selected = false, onClick = { /*TODO*/ }) {}
             }
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(200.dp)
-                    .padding(all = 16.dp)
-            ) {
 
-                Image(
-                    painter = rememberImagePainter(
-                        data = state.value?.image,
-                        builder = {
-                            transformations(RoundedCornersTransformation(16f))
-                            crossfade(true)
-                        }),
-                    contentDescription = null,
-                    modifier = Modifier
-                        .clickable {
-                            DialogUtil().showDatePicker(context = context) {}
-                        }
-                        .fillMaxSize(),
-                    contentScale = ContentScale.Crop
-                )
-            }
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .background(MaterialTheme.colors.secondary)
-                    .padding(16.dp),
-                contentAlignment = Alignment.Center
-            ) {
-                Text(text = "Title 2")
+            HorizontalPager(count = 2) { page ->
+                when (page) {
+                    0 -> Text(text = "Pagina 1")
+                    1 -> Text(text = "Pagina 1")
+                }
             }
         }
     }
