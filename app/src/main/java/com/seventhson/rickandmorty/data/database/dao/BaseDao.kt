@@ -1,6 +1,9 @@
 package com.seventhson.rickandmorty.data.database.dao
 
-import androidx.room.*
+import androidx.room.Delete
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
+import androidx.room.Update
 
 
 interface BaseDao<T> {

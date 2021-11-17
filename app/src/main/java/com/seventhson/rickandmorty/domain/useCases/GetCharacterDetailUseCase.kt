@@ -1,6 +1,5 @@
 package com.seventhson.rickandmorty.domain.useCases
 
-import com.seventhson.rickandmorty.domain.model.Character
 import com.seventhson.rickandmorty.domain.model.CharacterDetail
 import com.seventhson.rickandmorty.domain.repository.CharacterRepository
 import kotlinx.coroutines.flow.Flow

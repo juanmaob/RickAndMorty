@@ -14,11 +14,12 @@ import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.rememberImagePainter
 import com.seventhson.rickandmorty.R
 
 @Composable
-fun MainScreen(viewModel: MainViewModel, onItemClick: (Int) -> Unit) {
+fun MainScreen(viewModel: MainViewModel = hiltViewModel(), onItemClick: (Int) -> Unit) {
     val toolbarHeightDp = 80.dp
     
     List(

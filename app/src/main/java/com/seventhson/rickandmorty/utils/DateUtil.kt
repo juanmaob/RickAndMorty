@@ -1,6 +1,5 @@
 package com.seventhson.rickandmorty.utils
 
-import android.content.Context
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*

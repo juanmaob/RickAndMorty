@@ -7,11 +7,13 @@ import com.seventhson.rickandmorty.domain.model.CharacterList
 import com.seventhson.rickandmorty.domain.useCases.GetCharacterListUseCase
 import com.seventhson.rickandmorty.ui.common.BaseViewModel
 import com.seventhson.rickandmorty.utils.CustomException
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@HiltViewModel
 class MainViewModel @Inject constructor(
     private val getCharacterListUseCase: GetCharacterListUseCase
 ) : BaseViewModel() {
