@@ -3,10 +3,8 @@ package com.seventhson.rickandmorty.utils
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import android.widget.ImageView
 import androidx.core.app.ActivityOptionsCompat
 import com.seventhson.rickandmorty.ui.common.BaseComposeActivity
-import com.seventhson.rickandmorty.ui.detail.DetailActivity
 import com.seventhson.rickandmorty.ui.main.MainActivity
 
 class Navigator {
@@ -28,7 +26,7 @@ class Navigator {
         navigate(context, intent)
     }
 
-    fun goToDetail(
+    /*fun goToDetail(
         context: Context,
         characterId: Int,
         image: ImageView?
@@ -41,7 +39,7 @@ class Navigator {
         }
         navigate(context, intent)
 
-    }
+    }*/
 
 
 }

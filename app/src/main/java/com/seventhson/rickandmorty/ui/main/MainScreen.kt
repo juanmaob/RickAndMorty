@@ -4,44 +4,57 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Scaffold
+import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.rememberImagePainter
 import com.seventhson.rickandmorty.R
 
 @Composable
-fun MainScreen(viewModel: MainViewModel = hiltViewModel(), onItemClick: (Int) -> Unit) {
-    val toolbarHeightDp = 80.dp
-    
-    List(
-        state = viewModel.characterListLiveData.observeAsState(),
-        onBottomReached = { viewModel.getCharacterList() },
-        paddingVertivalDp = toolbarHeightDp,
-        onItemClick = onItemClick
-    )
+fun MainScreen(onItemClick: (Int) -> Unit) {
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                modifier = Modifier.height(80.dp),
+                elevation = 16.dp,
+                backgroundColor = Color.White,
+                content = {
+                    Box(
+                        contentAlignment = Alignment.Center,
+                        modifier = Modifier
+                            .fillMaxSize()
+                    ) {
+                        Image(
+                            painter = rememberImagePainter(data = R.drawable.rickmortylogo),
+                            contentDescription = null,
+                            modifier = Modifier.padding(16.dp)
+                        )
+                    }
 
-    Toolbar(
-        height = toolbarHeightDp
-    )
+                }
+            )
+        }
+    ) {
+        ListCharacters(onItemClick = onItemClick)
+    }
+
 }
 
 @Preview
 @Composable
-fun Toolbar(height: Dp = 120.dp) {
+fun Toolbar() {
     Box(
         contentAlignment = Alignment.Center,
         modifier = Modifier
             .fillMaxWidth()
-            .height(height)
+            .height(80.dp)
             .alpha(0.8f)
             .padding(bottom = 8.dp)
             .graphicsLayer {

@@ -87,6 +87,7 @@ dependencies {
     implementation "androidx.compose.runtime:runtime-livedata:$compose_version"
     implementation "androidx.compose.ui:ui-viewbinding:$compose_version"
     implementation "androidx.lifecycle:lifecycle-viewmodel-compose:2.4.0"//para usar viewModel()
+    implementation "androidx.navigation:navigation-compose:2.4.0-beta02"//para usar la navegación con compose
 
     //Glide
     implementation 'com.github.bumptech.glide:glide:4.12.0'

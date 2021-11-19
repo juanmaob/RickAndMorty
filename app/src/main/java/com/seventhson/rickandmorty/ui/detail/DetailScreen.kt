@@ -18,5 +18,9 @@ fun DetailScreen(vm: DetailViewModel = hiltViewModel(), id: Int) {
 
     var isLoading = vm.loading.observeAsState()
     //ShowLoading(isLoading)
+
     DetailInfo(vm.characterDetailLiveData.observeAsState())
+
 }
+
+

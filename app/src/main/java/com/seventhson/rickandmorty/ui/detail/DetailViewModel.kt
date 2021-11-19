@@ -33,7 +33,6 @@ class DetailViewModel @Inject constructor(
                 }
                 .collect { character ->
                     characterDetailLiveData.value = character
-                    //errorMessage.value = mapOf(1 to ("ex.message ?: "))
                     loading.value = DISMISS
                 }
         }

@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.compose.setContent
 import com.seventhson.rickandmorty.ui.common.BaseComposeActivity
 import com.seventhson.rickandmorty.ui.common.RMCompose
+import com.seventhson.rickandmorty.ui.navigation.Navigation
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -13,9 +14,7 @@ class MainActivity : BaseComposeActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             RMCompose {
-                MainScreen() {
-                    navigator.goToDetail(this, it, null)
-                }
+                Navigation()
             }
         }
     }
