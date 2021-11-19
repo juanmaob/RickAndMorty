@@ -13,12 +13,14 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberImagePainter
 import com.seventhson.rickandmorty.R
+import com.seventhson.rickandmorty.domain.model.Character
 
 @Composable
-fun MainScreen(onItemClick: (Int) -> Unit) {
+fun MainScreen(onItemClick: (Character) -> Unit) {
     Scaffold(
         topBar = {
             TopAppBar(
@@ -47,7 +49,6 @@ fun MainScreen(onItemClick: (Int) -> Unit) {
 
 }
 
-@Preview
 @Composable
 fun Toolbar() {
     Box(

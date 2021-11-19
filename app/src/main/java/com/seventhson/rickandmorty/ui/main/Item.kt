@@ -18,8 +18,9 @@ import com.seventhson.rickandmorty.ui.common.PillText
 
 @Composable
 fun Item(
+    number: Int,
     character: Character,
-    onItemClick: (Int) -> Unit
+    onItemClick: (Character) -> Unit
 ) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
@@ -27,10 +28,16 @@ fun Item(
             .fillMaxWidth()
             .padding(horizontal = 16.dp, vertical = 8.dp)
             .clickable {
-                onItemClick(character.id)
+                onItemClick(character)
             }
 
     ) {
+        Text(
+            text = "#${number+1}",
+            fontWeight = FontWeight.Bold,
+            modifier = Modifier.padding(horizontal = 16.dp)
+        )
+
         Image(
             painter = rememberImagePainter(
                 data = character.image,
@@ -45,6 +52,7 @@ fun Item(
                 .width(42.dp)
                 .height(42.dp)
         )
+
         Column(
             modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp)
         ) {

@@ -6,26 +6,47 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.google.accompanist.pager.ExperimentalPagerApi
 import com.seventhson.rickandmorty.ui.detail.DetailScreen
 import com.seventhson.rickandmorty.ui.main.MainScreen
+import java.net.URLEncoder
+import java.nio.charset.StandardCharsets
 
+@ExperimentalPagerApi
 @Composable
 fun Navigation() {
     val navController = rememberNavController()
     NavHost(navController, startDestination = Screen.Main.route) {
         composable(route = Screen.Main.route) {
-            MainScreen { characterId ->
-                navController.navigate(Screen.Detail.createRoute(characterId = characterId))
+            MainScreen { character ->
+                navController.navigate(Screen.Detail.createRoute(
+                    id = character.id,
+                    name = character.name,
+                    //URLs deben ser codificadas para pasarlas como argumento, si no, salta una excepción.
+                    image = URLEncoder.encode(character.image, StandardCharsets.UTF_8.toString())
+                ))
             }
-            
         }
-        //si no arguments puedes obtener el argumento con get("key") o getString("key) pero te devuelve un string siempre
+        //si no pones arguments puedes obtener el argumento con get("key") o getString("key) pero te devuelve un string siempre
         composable(
             route = Screen.Detail.route,
-            arguments = listOf(navArgument("characterId") { type = NavType.IntType })
+            arguments = listOf(
+                navArgument("id") { type = NavType.IntType },
+                navArgument("name") { type = NavType.StringType },
+                navArgument("image") { type = NavType.StringType }
+            )
         ) { backStackEntry ->
-            val characterId = backStackEntry.arguments?.getInt("characterId") ?: 0
-            DetailScreen(id = characterId)
+
+            val id = backStackEntry.arguments?.getInt("id") ?: 0
+            val name = backStackEntry.arguments?.getString("name") ?: ""
+            val image = backStackEntry.arguments?.getString("image") ?: ""
+            DetailScreen(
+                id = id,
+                picture = image,
+                name = name
+            ) {
+                navController.popBackStack()
+            }
         }
     }
 }

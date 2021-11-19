@@ -11,6 +11,8 @@ class Navigator {
 
     companion object {
         const val CHARACTER_ID = "CHARACTER_ID"
+        const val NAME_ID = "NAME_ID"
+        const val PICTURE_ID = "PICTURE_ID"
     }
 
     private fun navigate(context: Context, intent: Intent?, options: ActivityOptionsCompat) {
@@ -29,17 +31,24 @@ class Navigator {
     /*fun goToDetail(
         context: Context,
         characterId: Int,
+        characterName: String,
+        characterPicture: String,
         image: ImageView?
     ) {
-        val intent = Intent(context, DetailActivity::class.java)
-        intent.putExtra(CHARACTER_ID, characterId)
+        val intent = Intent(context, DetailActivity::class.java).apply {
+            putExtra(CHARACTER_ID, characterId)
+            putExtra(NAME_ID, characterName)
+            putExtra(PICTURE_ID, characterPicture)
+        }
+
         image?.let {
             val options = ActivityOptionsCompat.makeSceneTransitionAnimation(context as BaseComposeActivity, image, "detailTransition")
             navigate(context, intent, options)
         }
-        navigate(context, intent)
 
+        navigate(context, intent)
     }*/
+
 
 
 }
