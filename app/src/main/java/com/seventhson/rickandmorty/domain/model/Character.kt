@@ -10,6 +10,7 @@ data class Character(
     var id: Int,
     var name: String,
     var species: String,
+    val gender: String,
     var image: String
 )
 

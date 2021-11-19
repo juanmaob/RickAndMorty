@@ -1,8 +1,8 @@
-package com.seventhson.rickandmorty.ui.main
+package com.seventhson.rickandmorty.ui.main.views
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.runtime.Composable
@@ -31,14 +31,17 @@ fun List(
         state.value?.let {
 
             // Character items
-            itemsIndexed(it) { index,  character ->
-                Item(index, character, onItemClick)
+            items(it) { character ->
+                Item(character, onItemClick)
+                Spacer(modifier = Modifier.height(8.dp))
             }
 
             // Loading more item
             item {
                 Box(
-                    modifier = Modifier.fillMaxWidth().padding(16.dp),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(16.dp),
                     contentAlignment = Alignment.Center
                 ) {
                     CircularProgressIndicator(modifier = Modifier.size(32.dp))

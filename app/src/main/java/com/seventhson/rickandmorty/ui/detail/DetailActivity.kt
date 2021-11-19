@@ -1,10 +1,10 @@
 package com.seventhson.rickandmorty.ui.detail
-
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.seventhson.rickandmorty.ui.common.BaseComposeActivity
 import com.seventhson.rickandmorty.ui.common.RMCompose
+import com.seventhson.rickandmorty.ui.detail.views.DetailScreen
 import com.seventhson.rickandmorty.utils.Navigator
 import dagger.hilt.android.AndroidEntryPoint
 

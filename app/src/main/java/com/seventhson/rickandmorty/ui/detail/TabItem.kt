@@ -1,5 +1,4 @@
 package com.seventhson.rickandmorty.ui.detail
-
 import com.seventhson.rickandmorty.R
 
 sealed class TabItem(val icon: Int, val title: String) {

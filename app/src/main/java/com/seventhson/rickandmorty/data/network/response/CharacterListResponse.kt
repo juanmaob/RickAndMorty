@@ -19,6 +19,7 @@ data class CharacterResponse(
     var id: Int?,
     var name: String?,
     var species: String?,
+    var gender: String?,
     var image: String?
 )
 
@@ -30,6 +31,7 @@ fun CharacterListResponse.toDomain() : CharacterList {
                 id = it.id ?: 0,
                 name = it.name ?: "",
                 species = it.species ?: "",
+                gender = it.gender ?: "",
                 image = it.image ?: ""
             )
         }.toMutableList()

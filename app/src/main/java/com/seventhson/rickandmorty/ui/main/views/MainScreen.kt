@@ -1,4 +1,4 @@
-package com.seventhson.rickandmorty.ui.main
+package com.seventhson.rickandmorty.ui.main.views
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -17,11 +17,12 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.rememberImagePainter
 import com.seventhson.rickandmorty.R
 import com.seventhson.rickandmorty.domain.model.Character
+import com.seventhson.rickandmorty.ui.main.MainViewModel
 
 @Composable
 fun MainScreen(viewModel: MainViewModel = hiltViewModel(), onItemClick: (Character) -> Unit) {
     val toolbarHeightDp = 80.dp
-    
+
     List(
         state = viewModel.characterListLiveData.observeAsState(),
         onBottomReached = { viewModel.getCharacterList() },

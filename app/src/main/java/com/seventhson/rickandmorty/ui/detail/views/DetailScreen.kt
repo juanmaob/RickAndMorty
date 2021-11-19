@@ -1,5 +1,4 @@
-package com.seventhson.rickandmorty.ui.detail
-
+package com.seventhson.rickandmorty.ui.detail.views
 import androidx.compose.foundation.layout.Column
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.livedata.observeAsState
@@ -8,6 +7,8 @@ import androidx.compose.runtime.remember
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.seventhson.rickandmorty.ui.common.ErrorDialog
+import com.seventhson.rickandmorty.ui.detail.DetailViewModel
+import com.seventhson.rickandmorty.ui.detail.TabItem
 
 @ExperimentalPagerApi
 @Composable

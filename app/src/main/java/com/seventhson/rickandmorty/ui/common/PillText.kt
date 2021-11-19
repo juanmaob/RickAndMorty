@@ -26,7 +26,7 @@ fun PillText(
                 shape = RoundedCornerShape(corner = CornerSize(16.dp)),
                 color = backgroundColor
             )
-            .padding(start = 4.dp, top = 1.dp, end = 4.dp, bottom = 2.dp)
+            .padding(start = 8.dp, top = 1.dp, end = 8.dp, bottom = 2.dp)
 
     )
 }

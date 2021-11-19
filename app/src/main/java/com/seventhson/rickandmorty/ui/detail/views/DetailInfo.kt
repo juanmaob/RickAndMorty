@@ -1,5 +1,4 @@
-package com.seventhson.rickandmorty.ui.detail
-
+package com.seventhson.rickandmorty.ui.detail.views
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.*
@@ -14,6 +13,7 @@ import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.pagerTabIndicatorOffset
 import com.google.accompanist.pager.rememberPagerState
 import com.seventhson.rickandmorty.domain.model.CharacterDetail
+import com.seventhson.rickandmorty.ui.detail.TabItem
 import com.seventhson.rickandmorty.ui.ui.theme.VeryLightGrey
 import kotlinx.coroutines.launch
 
