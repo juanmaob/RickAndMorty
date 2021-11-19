@@ -1,4 +1,4 @@
-package com.seventhson.rickandmorty.ui.main
+package com.seventhson.rickandmorty.ui.main.views
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -12,8 +12,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberImagePainter
 import com.seventhson.rickandmorty.R
@@ -39,14 +37,12 @@ fun MainScreen(onItemClick: (Character) -> Unit) {
                             modifier = Modifier.padding(16.dp)
                         )
                     }
-
                 }
             )
         }
     ) {
         ListCharacters(onItemClick = onItemClick)
     }
-
 }
 
 @Composable

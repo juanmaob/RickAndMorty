@@ -7,8 +7,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.google.accompanist.pager.ExperimentalPagerApi
-import com.seventhson.rickandmorty.ui.detail.DetailScreen
-import com.seventhson.rickandmorty.ui.main.MainScreen
+import com.seventhson.rickandmorty.ui.detail.views.DetailScreen
+import com.seventhson.rickandmorty.ui.main.views.MainScreen
 import java.net.URLEncoder
 import java.nio.charset.StandardCharsets
 

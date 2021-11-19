@@ -1,4 +1,4 @@
-package com.seventhson.rickandmorty.ui.main
+package com.seventhson.rickandmorty.ui.main.views
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -12,7 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.seventhson.rickandmorty.domain.model.Character
-import com.seventhson.rickandmorty.ui.main.views.Item
+import com.seventhson.rickandmorty.ui.main.MainViewModel
 import com.seventhson.rickandmorty.utils.isScrolledToTheEnd
 
 @Composable

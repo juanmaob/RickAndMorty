@@ -1,5 +1,4 @@
-package com.seventhson.rickandmorty.ui.detail
-
+package com.seventhson.rickandmorty.ui.detail.views
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable

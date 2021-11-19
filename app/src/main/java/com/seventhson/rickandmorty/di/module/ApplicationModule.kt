@@ -4,7 +4,6 @@ import android.app.Application
 import android.content.Context
 import androidx.room.Room
 import com.seventhson.rickandmorty.data.database.AppDatabase
-import com.seventhson.rickandmorty.utils.Navigator
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -19,12 +18,6 @@ class ApplicationModule() {
     @Singleton
     fun providesApplicationContext(application: Application): Context {
         return application.applicationContext
-    }
-
-    @Provides
-    @Singleton
-    fun providesNavigator(): Navigator {
-        return Navigator()
     }
 
     @Provides

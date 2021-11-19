@@ -1,5 +1,4 @@
 package com.seventhson.rickandmorty.ui.detail
-
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.seventhson.rickandmorty.domain.model.CharacterDetail

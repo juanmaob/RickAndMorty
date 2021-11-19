@@ -1,4 +1,4 @@
-package com.seventhson.rickandmorty.ui.detail
+package com.seventhson.rickandmorty.ui.detail.views
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -22,10 +22,9 @@ fun DetailInfoPage(detail: CharacterDetail) {
             Box(modifier = Modifier.weight(1f)) { KeyValueInfo("Species", detail.species) }
             Box(modifier = Modifier.weight(1f)) { KeyValueInfo("Gender", detail.gender) }
         }
-        Row(modifier = Modifier.fillMaxWidth()) {
-            Box(modifier = Modifier.weight(1f)) { KeyValueInfo("Origin", detail.origin) }
-            Box(modifier = Modifier.weight(1f)) { KeyValueInfo("Location", detail.location) }
-        }
+
+        KeyValueInfo("Origin", detail.origin)
+        KeyValueInfo("Location", detail.location)
     }
 }
 
