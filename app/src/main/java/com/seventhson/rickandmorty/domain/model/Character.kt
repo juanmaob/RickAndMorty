@@ -24,5 +24,6 @@ data class CharacterDetail(
     var location: String,
     var image: String,
     var url: String,
-    var created: String
+    var created: String,
+    val episode: List<String>
 )

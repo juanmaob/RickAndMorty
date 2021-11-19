@@ -11,6 +11,11 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class DetailActivity : BaseComposeActivity() {
 
+    private val tabList = listOf(
+        TabItem.Info,
+        TabItem.Episodes
+    )
+
     @OptIn(ExperimentalPagerApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,7 +25,9 @@ class DetailActivity : BaseComposeActivity() {
                     DetailScreen(
                         id = getIntExtra(Navigator.CHARACTER_ID, -1),
                         name = getStringExtra(Navigator.NAME_ID) ?: "",
-                        picture = getStringExtra(Navigator.PICTURE_ID) ?: ""
+                        picture = getStringExtra(Navigator.PICTURE_ID) ?: "",
+                        tabList = tabList,
+                        onClickBack = { onBackPressed() }
                     )
                 }
             }

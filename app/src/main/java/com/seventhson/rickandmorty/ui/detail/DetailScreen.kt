@@ -15,7 +15,9 @@ fun DetailScreen(
     vm: DetailViewModel = hiltViewModel(),
     id: Int,
     name: String,
-    picture: String
+    picture: String,
+    tabList: List<TabItem>,
+    onClickBack: () -> Unit
 ) {
     vm.getCharacterDetail(id)
 
@@ -25,7 +27,7 @@ fun DetailScreen(
     ErrorDialog(showDialog)
 
     Column {
-        DetailHeader(name, picture)
-        DetailInfo(vm.characterDetailLiveData.observeAsState())
+        DetailHeader(name, picture, onClickBack)
+        DetailInfo(vm.characterDetailLiveData.observeAsState(), tabList)
     }
 }

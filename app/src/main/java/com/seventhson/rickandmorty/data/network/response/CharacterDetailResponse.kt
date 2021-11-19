@@ -24,7 +24,7 @@ data class CharacterDetailResponse(
     @SerializedName("image")
     var image: String?,
     @SerializedName("episode")
-    var episode: List<Any>?,
+    var episode: List<String>?,
     @SerializedName("url")
     var url: String?,
     @SerializedName("created")
@@ -57,6 +57,7 @@ fun CharacterDetailResponse.toDomain(): CharacterDetail {
         location = this.location?.name ?: "",
         image = this.image ?: "",
         url = this.url ?: "",
-        created = this.created ?: ""
+        created = this.created ?: "",
+        episode = this.episode ?: listOf()
     )
 }
