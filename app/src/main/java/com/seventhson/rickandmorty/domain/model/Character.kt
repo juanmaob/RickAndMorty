@@ -18,16 +18,16 @@ data class Character(
 ) : Parcelable
 
 data class CharacterDetail(
-    var id: Int,
-    var name: String,
-    var status: String,
-    var species: String,
-    var type: String,
-    var gender: String,
-    var origin: String,
-    var location: String,
-    var image: String,
-    var url: String,
-    var created: String,
-    val episode: List<String>
+    var id: Int = -1,
+    var name: String = "",
+    var status: String = "",
+    var species: String = "",
+    var type: String = "",
+    var gender: String = "",
+    var origin: String = "",
+    var location: String = "",
+    var image: String = "",
+    var url: String = "",
+    var created: String = "",
+    val episode: List<String> = emptyList()
 )

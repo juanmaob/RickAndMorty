@@ -6,7 +6,9 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.derivedStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -21,35 +23,43 @@ fun ListCharacters(
     onItemClick: (Character) -> Unit
 ) {
     val scrollState = rememberLazyListState()
-    val state = viewModel.characterListLiveData.observeAsState()
+    val state = viewModel.characterListState
 
-    LazyColumn (
+
+    LazyColumn(
         state = scrollState,
         modifier = Modifier.fillMaxSize()
     ) {
-        state.value?.let {
 
-            // Character items
-            items(it) { character ->
-                Item(character, onItemClick)
-                Spacer(modifier = Modifier.height(8.dp))
-            }
+        // Character items
+        items(state) { character ->
+            Item(character, onItemClick)
+            Spacer(modifier = Modifier.height(8.dp))
+        }
 
-            // Loading more item
-            item {
-                Box(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(16.dp),
-                    contentAlignment = Alignment.Center
-                ) {
-                    CircularProgressIndicator(modifier = Modifier.size(32.dp))
-                }
+        // Loading more item
+        item {
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp),
+                contentAlignment = Alignment.Center
+            ) {
+                CircularProgressIndicator(modifier = Modifier.size(32.dp))
             }
+        }
+
+    }
+
+    val loadMore = remember {
+        derivedStateOf {
+            scrollState.isScrolledToTheEnd()
         }
     }
 
-    if (scrollState.isScrolledToTheEnd()) {
-        viewModel.getCharacterList()
+    LaunchedEffect(loadMore.value) {
+        if (loadMore.value)
+            viewModel.getCharacterList()
     }
+
 }

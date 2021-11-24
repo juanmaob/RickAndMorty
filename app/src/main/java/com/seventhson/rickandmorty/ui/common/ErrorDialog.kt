@@ -5,25 +5,29 @@ import androidx.compose.material.Text
 import androidx.compose.material.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.graphics.Color
 
 @Composable
-fun ErrorDialog(showDialog: MutableState<Boolean>) {
+fun ErrorDialog(state: MutableState<Map<Int, String>?>) {
+    val showDialog = remember { mutableStateOf(false) }
+    showDialog.value = state.value != null
 
     if (showDialog.value) {
         AlertDialog(
             onDismissRequest = {
-                showDialog.value = false
+                state.value = null
             },
             text = {
                 Text(
-                    text = "Error",
+                    text = state.value?.values?.first() ?: "",
                     color = Color.Black
                 )
             },
             confirmButton = {
                 TextButton(onClick = {
-                    showDialog.value = false
+                    state.value = null
                 }) {
                     Text(text = "Cerrar")
                 }

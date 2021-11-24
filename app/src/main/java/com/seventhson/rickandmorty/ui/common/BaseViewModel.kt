@@ -1,21 +1,17 @@
 package com.seventhson.rickandmorty.ui.common
 
-import androidx.lifecycle.MutableLiveData
+import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 
-abstract class BaseViewModel : ViewModel() {
+open class BaseViewModel : ViewModel() {
 
     companion object {
         const val SHOW = true
         const val DISMISS = false
     }
 
-    val loading : MutableLiveData<Boolean> by lazy {
-        MutableLiveData<Boolean>()
-    }
+    val loading = mutableStateOf(false)
 
-    val errorMessage: MutableLiveData<Map<Int, String>> by lazy {
-        MutableLiveData<Map<Int, String>>()
-    }
+    val errorMessage = mutableStateOf<Map<Int, String>?>(null)
 
 }

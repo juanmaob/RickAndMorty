@@ -1,9 +1,8 @@
 package com.seventhson.rickandmorty.ui.detail.views
+
 import androidx.compose.foundation.layout.Column
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.livedata.observeAsState
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.LaunchedEffect
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.seventhson.rickandmorty.ui.common.ErrorDialog
@@ -19,21 +18,21 @@ fun DetailScreen(
     picture: String,
     onClickBack: () -> Unit
 ) {
-    viewModel.getCharacterDetail(id)
+    ErrorDialog(viewModel.errorMessage)
+
+    //Se usa para lanzar solo una vez a lo del bloque. Se puede volver a lanzar si "key1" cambia.
+    //En este caso no lo cambiamos y nos aseguramos que solo se llama a la getChacarterDetail una sola vez.
+    LaunchedEffect(key1 = Unit) {
+        viewModel.getCharacterDetail(id)
+    }
 
     val tabList = listOf(
         TabItem.Info,
         TabItem.Episodes
     )
-
-    val showDialog = remember { mutableStateOf(false) }
-    showDialog.value = viewModel.errorMessage.observeAsState().value != null
-
-    ErrorDialog(showDialog)
-
     Column {
         DetailHeader(name, picture, onClickBack)
-        DetailInfo(viewModel.characterDetailLiveData.observeAsState(), tabList)
+        DetailInfo(viewModel.characterDetailState, tabList)
     }
 
 }

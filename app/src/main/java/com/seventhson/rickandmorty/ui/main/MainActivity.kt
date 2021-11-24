@@ -4,9 +4,11 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import com.google.accompanist.pager.ExperimentalPagerApi
+import com.seventhson.rickandmorty.ui.common.BaseViewModel
 import com.seventhson.rickandmorty.ui.common.RMCompose
 import com.seventhson.rickandmorty.ui.navigation.Navigation
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
