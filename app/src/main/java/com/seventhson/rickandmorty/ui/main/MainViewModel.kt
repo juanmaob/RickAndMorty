@@ -45,7 +45,6 @@ class MainViewModel @Inject constructor(
                         nextPage = characterList.nextPage
                     }
                     characterListState.addAll(characterList.list)
-                    errorMessage.value = mapOf(999 to ("Error"))
                     loading.value = DISMISS
                 }
         }

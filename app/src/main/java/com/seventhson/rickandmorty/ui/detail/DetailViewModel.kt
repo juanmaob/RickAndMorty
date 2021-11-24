@@ -6,6 +6,7 @@ import com.seventhson.rickandmorty.domain.useCases.GetCharacterDetailUseCase
 import com.seventhson.rickandmorty.ui.common.BaseViewModel
 import com.seventhson.rickandmorty.utils.CustomException
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -16,15 +17,12 @@ class DetailViewModel @Inject constructor(
     private val getCharacterDetailUseCase: GetCharacterDetailUseCase
 ) : BaseViewModel() {
 
-    /*val characterDetailLiveData: MutableLiveData<CharacterDetail> by lazy {
-        MutableLiveData<CharacterDetail>()
-    }*/
-
     val characterDetailState =  mutableStateOf(CharacterDetail())
 
     fun getCharacterDetail(characterId: Int) {
         loading.value = SHOW
         viewModelScope.launch {
+            delay(1500)
             getCharacterDetailUseCase.setParams(characterId)
             getCharacterDetailUseCase.executeCall()
                 .catch {

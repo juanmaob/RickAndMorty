@@ -6,6 +6,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.seventhson.rickandmorty.ui.common.ErrorDialog
+import com.seventhson.rickandmorty.ui.common.Loading
 import com.seventhson.rickandmorty.ui.detail.DetailViewModel
 import com.seventhson.rickandmorty.ui.detail.TabItem
 
@@ -18,7 +19,6 @@ fun DetailScreen(
     picture: String,
     onClickBack: () -> Unit
 ) {
-    ErrorDialog(viewModel.errorMessage)
 
     //Se usa para lanzar solo una vez a lo del bloque. Se puede volver a lanzar si "key1" cambia.
     //En este caso no lo cambiamos y nos aseguramos que solo se llama a la getChacarterDetail una sola vez.
@@ -34,5 +34,8 @@ fun DetailScreen(
         DetailHeader(name, picture, onClickBack)
         DetailInfo(viewModel.characterDetailState, tabList)
     }
+
+    ErrorDialog(viewModel.errorMessage)
+    Loading(isLoading = viewModel.loading)
 
 }

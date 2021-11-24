@@ -14,6 +14,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.seventhson.rickandmorty.domain.model.Character
+import com.seventhson.rickandmorty.ui.common.ErrorDialog
+import com.seventhson.rickandmorty.ui.common.Loading
 import com.seventhson.rickandmorty.ui.main.MainViewModel
 import com.seventhson.rickandmorty.utils.isScrolledToTheEnd
 
@@ -24,7 +26,6 @@ fun ListCharacters(
 ) {
     val scrollState = rememberLazyListState()
     val state = viewModel.characterListState
-
 
     LazyColumn(
         state = scrollState,
@@ -61,5 +62,8 @@ fun ListCharacters(
         if (loadMore.value)
             viewModel.getCharacterList()
     }
+
+    ErrorDialog(viewModel.errorMessage)
+    Loading(isLoading = viewModel.loading)
 
 }
