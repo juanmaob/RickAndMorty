@@ -1,5 +1,6 @@
 package com.seventhson.rickandmorty.ui.main
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.seventhson.rickandmorty.domain.model.Character
@@ -29,6 +30,8 @@ class MainViewModel @Inject constructor(
     }
 
     fun getCharacterList() {
+        Log.d("Composable", "----- Get Character List ----")
+
         loading.value = SHOW
 
         viewModelScope.launch {

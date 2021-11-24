@@ -21,7 +21,8 @@ import kotlinx.coroutines.launch
 @Composable
 fun DetailInfo(
     state: State<CharacterDetail?>,
-    tabList: List<TabItem>
+    tabList: List<TabItem>,
+    onClickEpisode: (Int) -> Unit
 ) {
     state.value?.let { detail ->
         Column(modifier = Modifier.fillMaxSize()) {
@@ -56,7 +57,7 @@ fun DetailInfo(
             ) { page ->
                 when (page) {
                     0 -> DetailInfoPage(detail)
-                    1 -> DetailEpisodesPage(detail.episode)
+                    1 -> DetailEpisodesPage(detail.episode, onClickEpisode)
                 }
             }
         }

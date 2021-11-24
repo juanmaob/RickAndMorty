@@ -127,3 +127,4 @@ fun EditText.onRightDrawableClicked(onClicked: (view: EditText) -> Unit) {
 }
 
 fun LazyListState.isScrolledToTheEnd() = layoutInfo.visibleItemsInfo.lastOrNull()?.index == layoutInfo.totalItemsCount - 1
+

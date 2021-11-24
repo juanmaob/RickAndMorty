@@ -11,8 +11,7 @@ import androidx.navigation.navArgument
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.seventhson.rickandmorty.ui.detail.views.DetailScreen
 import com.seventhson.rickandmorty.ui.main.views.MainScreen
-import java.net.URLEncoder
-import java.nio.charset.StandardCharsets
+import com.seventhson.rickandmorty.utils.encodeURL
 
 @ExperimentalPagerApi
 @Composable
@@ -41,24 +40,31 @@ private fun NavGraphBuilder.addDetailGraph(navController: NavHostController) {
         DetailScreen(
             id = id,
             picture = image,
-            name = name
-        ) {
-            navController.popBackStack()
-        }
+            name = name,
+            onClickBack = {
+                navController.popBackStack()
+            },
+            onClickEpisode = { episodeId ->
+                navController.navigate(
+                    Screen.Episode.createRoute(id = episodeId)
+                )
+            }
+        )
     }
 }
 
 private fun NavGraphBuilder.addMainGraph(navController: NavHostController) {
     composable(route = Screen.Main.route) {
-        MainScreen { character ->
-            navController.navigate(
-                Screen.Detail.createRoute(
-                    id = character.id,
-                    name = character.name,
-                    //URLs deben ser codificadas para pasarlas como argumento, si no, salta una excepción.
-                    image = URLEncoder.encode(character.image, StandardCharsets.UTF_8.toString())
+        MainScreen(
+            onItemClick = { character ->
+                navController.navigate(
+                    Screen.Detail.createRoute(
+                        id = character.id,
+                        name = character.name,
+                        image = character.image.encodeURL()
+                    )
                 )
-            )
-        }
+            }
+        )
     }
 }
