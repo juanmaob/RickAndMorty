@@ -2,6 +2,7 @@ package com.seventhson.rickandmorty.ui.main
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
+import androidx.compose.runtime.mutableStateListOf
 import androidx.lifecycle.viewModelScope
 import com.seventhson.rickandmorty.domain.model.Character
 import com.seventhson.rickandmorty.domain.model.CharacterList
@@ -21,9 +22,8 @@ class MainViewModel @Inject constructor(
 
     private val characterListData = CharacterList(1, listOf())
 
-    val characterListLiveData: MutableLiveData<List<Character>> by lazy {
-        MutableLiveData<List<Character>>()
-    }
+    var characterListState = mutableStateListOf<Character>()
+        private set
 
     init {
         getCharacterList()
@@ -48,8 +48,7 @@ class MainViewModel @Inject constructor(
                         list = characterListData.list.plus(characterList.list)
                         nextPage = characterList.nextPage
                     }
-                    characterListLiveData.value = characterListData.list
-
+                    characterListState.addAll(characterList.list)
                     loading.value = DISMISS
                 }
         }

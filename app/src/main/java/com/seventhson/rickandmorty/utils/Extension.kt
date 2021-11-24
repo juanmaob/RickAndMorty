@@ -21,17 +21,18 @@ import com.seventhson.rickandmorty.R
 fun Context.toast(message: String) = Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
 
 fun ImageView.fromUrl(url: String) {
-    if(url.isNotEmpty())
-        Glide.with(this).load(url).centerCrop().placeholder(R.drawable.ic_launcher_foreground).into(this)
+    if (url.isNotEmpty())
+        Glide.with(this).load(url).centerCrop().placeholder(R.drawable.ic_launcher_foreground)
+            .into(this)
 }
 
-fun ProgressBar.show(){
-    if(this.visibility == View.GONE)
+fun ProgressBar.show() {
+    if (this.visibility == View.GONE)
         this.visibility = View.VISIBLE
 }
 
-fun ProgressBar.hide(){
-    if(this.visibility == View.VISIBLE)
+fun ProgressBar.hide() {
+    if (this.visibility == View.VISIBLE)
         this.visibility = View.GONE
 }
 
@@ -66,7 +67,7 @@ fun View.hide() {
 }
 
 fun View.switchVisibility() {
-    this.visibility = if(this.visibility == View.VISIBLE) View.GONE else View.VISIBLE
+    this.visibility = if (this.visibility == View.VISIBLE) View.GONE else View.VISIBLE
 }
 
 fun Activity?.showCustomMessage(text: String, timeExpose: Int) {
@@ -126,5 +127,8 @@ fun EditText.onRightDrawableClicked(onClicked: (view: EditText) -> Unit) {
     }
 }
 
-fun LazyListState.isScrolledToTheEnd() = layoutInfo.visibleItemsInfo.lastOrNull()?.index == layoutInfo.totalItemsCount - 1
+fun LazyListState.isScrolledToTheEnd() = if (layoutInfo.totalItemsCount > 1)
+    layoutInfo.visibleItemsInfo.lastOrNull()?.index == layoutInfo.totalItemsCount - 1
+else
+    false
 
