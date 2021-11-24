@@ -22,12 +22,12 @@ data class EpisodeDetailResponse(
 
 fun EpisodeDetailResponse.toDomain(): Episode {
     return Episode(
-        id = id,
-        name = name,
-        air_date = air_date,
-        episode = episode,
-        characters = characters,
-        url = url,
-        created = created
+        id = id ?: 0,
+        name = name ?: "",
+        air_date = air_date ?: "",
+        episode = episode ?: "",
+        characters = characters ?: listOf(),
+        url = url ?: "",
+        created = created ?: ""
     )
 }

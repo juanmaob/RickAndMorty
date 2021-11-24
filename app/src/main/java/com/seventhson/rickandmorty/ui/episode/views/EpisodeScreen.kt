@@ -7,6 +7,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.seventhson.rickandmorty.ui.common.ErrorDialog
+import com.seventhson.rickandmorty.ui.common.Loading
 import com.seventhson.rickandmorty.ui.episode.EpisodeViewModel
 
 @Composable
@@ -16,19 +18,13 @@ fun EpisodeScreen(
     onClickBack: () -> Unit,
     onClickCharacter: (Int) -> Unit
 ) {
+    viewModel.getEpisodeDetail(id)
+
     Box(Modifier.fillMaxSize().background(Color.White)) {
         
     }
-    /*viewModel.getEpisode(id)
 
-    val showDialog = remember { mutableStateOf(false) }
-    showDialog.value = viewModel.errorMessage.value != null
+    ErrorDialog(viewModel.errorMessage)
+    Loading(isLoading = viewModel.loading)
 
-    ErrorDialog(showDialog)
-
-    Column {
-        //DetailHeader(name, picture, onClickBack)
-        //DetailInfo(viewModel.characterDetailLiveData.observeAsState(), tabList, onClickEpisode)
-    }
-*/
 }
