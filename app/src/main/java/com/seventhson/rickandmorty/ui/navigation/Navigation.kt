@@ -10,6 +10,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.seventhson.rickandmorty.ui.detail.views.DetailScreen
+import com.seventhson.rickandmorty.ui.episode.views.EpisodeScreen
 import com.seventhson.rickandmorty.ui.main.views.MainScreen
 import com.seventhson.rickandmorty.utils.encodeURL
 
@@ -20,6 +21,7 @@ fun Navigation() {
     NavHost(navController, startDestination = Screen.Main.route) {
         addMainGraph(navController)
         addDetailGraph(navController)
+        addEpisodeGraphGraph(navController)
     }
 }
 
@@ -37,6 +39,7 @@ private fun NavGraphBuilder.addDetailGraph(navController: NavHostController) {
         val id = backStackEntry.arguments?.getInt("id") ?: 0
         val name = backStackEntry.arguments?.getString("name") ?: ""
         val image = backStackEntry.arguments?.getString("image") ?: ""
+
         DetailScreen(
             id = id,
             picture = image,
@@ -63,6 +66,27 @@ private fun NavGraphBuilder.addMainGraph(navController: NavHostController) {
                         name = character.name,
                         image = character.image.encodeURL()
                     )
+                )
+            }
+        )
+    }
+}
+
+private fun NavGraphBuilder.addEpisodeGraphGraph(navController: NavHostController) {
+    composable(
+        route = Screen.Episode.route,
+        arguments = listOf(navArgument("id") { type = NavType.IntType })
+    ) { backStackEntry ->
+        val id = backStackEntry.arguments?.getInt("id") ?: 0
+
+        EpisodeScreen(
+            id = id,
+            onClickBack = {
+                navController.popBackStack()
+            },
+            onClickCharacter = { characterId ->
+                navController.navigate(
+                    Screen.Detail.createRoute(id = characterId, image = "", name = "")
                 )
             }
         )
