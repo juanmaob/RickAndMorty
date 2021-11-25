@@ -23,7 +23,7 @@ fun DetailScreen(
 
     //Se usa para lanzar solo una vez a lo del bloque. Se puede volver a lanzar si "key1" cambia.
     //En este caso no lo cambiamos y nos aseguramos que solo se llama a la getChacarterDetail una sola vez.
-    LaunchedEffect(key1 = Unit) {
+    LaunchedEffect(Unit) {
         viewModel.getCharacterDetail(id)
     }
 

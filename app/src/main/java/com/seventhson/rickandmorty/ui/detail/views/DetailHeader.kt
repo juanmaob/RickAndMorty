@@ -1,25 +1,24 @@
 package com.seventhson.rickandmorty.ui.detail.views
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.rememberImagePainter
-import com.seventhson.rickandmorty.R
+import com.seventhson.rickandmorty.ui.common.BackButton
 import com.seventhson.rickandmorty.ui.ui.theme.Black70
 
 @Composable
@@ -43,46 +42,51 @@ fun DetailHeader(
             contentDescription = null
         )
 
-        Box(
+        GradientText(
+            text = name,
             modifier = Modifier
                 .align(Alignment.BottomCenter)
-                .fillMaxWidth()
                 .height(headerHeight.div(3))
-                .background(
-                    brush = Brush.verticalGradient(
-                        colors = listOf(
-                            Color.Transparent,
-                            Black70
-                        )
-                    )
-                )
-        ) {
-            Text(
-                text = name,
-                textAlign = TextAlign.Center,
-                fontSize = 24.sp,
-                fontWeight = FontWeight.ExtraBold,
-                color = Color.White,
-                modifier = Modifier
-                    .height(50.dp)
-                    .fillMaxWidth()
-                    .align(Alignment.BottomCenter)
-            )
-        }
+        )
 
-        Image(
-            painter = painterResource(id = R.drawable.ic_arrow_back),
-            contentDescription = null,
-            colorFilter = ColorFilter.tint(color = Color.Black),
-            modifier = Modifier
-                .size(66.dp)
-                .padding(16.dp)
-                .background(shape = CircleShape, color = Color.White)
-                .padding(4.dp)
-                .align(Alignment.TopStart)
-                .clip(shape = CircleShape)
-                .clickable { onClickBack() }
+        BackButton(
+            modifier = Modifier,
+            onClick = onClickBack
         )
     }
 
+}
+
+@Composable
+fun GradientText(modifier: Modifier, text: String) {
+    Box(
+        modifier = modifier
+            .fillMaxWidth()
+            .background(
+                brush = Brush.verticalGradient(
+                    colors = listOf(
+                        Color.Transparent,
+                        Black70
+                    )
+                )
+            )
+    ) {
+        Text(
+            text = text,
+            textAlign = TextAlign.Center,
+            fontSize = 24.sp,
+            fontWeight = FontWeight.ExtraBold,
+            color = Color.White,
+            modifier = Modifier
+                .height(50.dp)
+                .fillMaxWidth()
+                .align(Alignment.BottomCenter)
+        )
+    }
+}
+
+@Preview
+@Composable
+fun DetailHeaderPreview() {
+    DetailHeader(name = "Nombre de personaje", picture = "", onClickBack = {})
 }

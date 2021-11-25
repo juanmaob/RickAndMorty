@@ -86,7 +86,7 @@ private fun NavGraphBuilder.addEpisodeGraphGraph(navController: NavHostControlle
             },
             onClickCharacter = { characterId ->
                 navController.navigate(
-                    Screen.Detail.createRoute(id = characterId, image = "", name = "")
+                    Screen.Detail.createRoute(id = characterId)
                 )
             }
         )
