@@ -14,7 +14,6 @@ import com.seventhson.rickandmorty.ui.detail.TabItem
 @Composable
 fun DetailScreen(
     viewModel: DetailViewModel = hiltViewModel(),
-    id: Int,
     name: String,
     picture: String,
     onClickBack: () -> Unit,
@@ -23,9 +22,9 @@ fun DetailScreen(
 
     //Se usa para lanzar solo una vez a lo del bloque. Se puede volver a lanzar si "key1" cambia.
     //En este caso no lo cambiamos y nos aseguramos que solo se llama a la getChacarterDetail una sola vez.
-    LaunchedEffect(Unit) {
+    /*LaunchedEffect(Unit) {
         viewModel.getCharacterDetail(id)
-    }
+    }*/
 
     val tabList = listOf(
         TabItem.Info,

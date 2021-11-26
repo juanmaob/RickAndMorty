@@ -25,6 +25,22 @@ fun Navigation() {
     }
 }
 
+private fun NavGraphBuilder.addMainGraph(navController: NavHostController) {
+    composable(route = Screen.Main.route) {
+        MainScreen(
+            onItemClick = { character ->
+                navController.navigate(
+                    Screen.Detail.createRoute(
+                        id = character.id,
+                        name = character.name,
+                        image = character.image.encodeURL()
+                    )
+                )
+            }
+        )
+    }
+}
+
 @ExperimentalPagerApi
 private fun NavGraphBuilder.addDetailGraph(navController: NavHostController) {
     //si no pones arguments puedes obtener el argumento con get("key") o getString("key) pero te devuelve un string siempre
@@ -36,12 +52,10 @@ private fun NavGraphBuilder.addDetailGraph(navController: NavHostController) {
             navArgument("image") { type = NavType.StringType }
         )
     ) { backStackEntry ->
-        val id = backStackEntry.arguments?.getInt("id") ?: 0
         val name = backStackEntry.arguments?.getString("name") ?: ""
         val image = backStackEntry.arguments?.getString("image") ?: ""
 
         DetailScreen(
-            id = id,
             picture = image,
             name = name,
             onClickBack = {
@@ -50,22 +64,6 @@ private fun NavGraphBuilder.addDetailGraph(navController: NavHostController) {
             onClickEpisode = { episodeId ->
                 navController.navigate(
                     Screen.Episode.createRoute(id = episodeId)
-                )
-            }
-        )
-    }
-}
-
-private fun NavGraphBuilder.addMainGraph(navController: NavHostController) {
-    composable(route = Screen.Main.route) {
-        MainScreen(
-            onItemClick = { character ->
-                navController.navigate(
-                    Screen.Detail.createRoute(
-                        id = character.id,
-                        name = character.name,
-                        image = character.image.encodeURL()
-                    )
                 )
             }
         )
