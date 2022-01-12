@@ -60,6 +60,8 @@ fun ListCharacters(
         }
     }
 
+    //entra dentro del launchedeffect cada vez que loadMore cambia
+    // y luego solo si es true, llama al viewmodel
     LaunchedEffect(loadMore) {
         if (loadMore)
             viewModel.getCharacterList()
