@@ -22,7 +22,9 @@ class DetailViewModel @Inject constructor(
     val characterDetailState =  mutableStateOf(CharacterDetail())
 
     init {
-        //Con savedStateHandle podemos obtener los mismos argumentos del composable donde se ha injectado el viewmodel
+        //Con savedStateHandle podemos obtener los mismos argumentos
+        // del composable donde se ha injectado el viewmodel.
+        //Mirar en el grafo de navegación donde se añaden los argumentos
         val id = savedStateHandle.get<Int>("id")
         id?.let { getCharacterDetail(it) }
     }
