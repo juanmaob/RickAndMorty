@@ -8,6 +8,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.tooling.preview.Preview
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.pagerTabIndicatorOffset
@@ -25,42 +26,53 @@ fun DetailInfo(
     onClickEpisode: (Int) -> Unit
 ) {
     state.value?.let { detail ->
-        Column(modifier = Modifier.fillMaxSize()) {
-            val pagerState = rememberPagerState()
-            val coroutineScope = rememberCoroutineScope()
+        DetailInfo(detail, tabList, onClickEpisode)
+    }
 
-            TabRow(
-                backgroundColor = Color.White,
-                selectedTabIndex = pagerState.currentPage,
-                indicator = { tabPositions ->
-                    TabRowDefaults.Indicator(
-                        color = Color.Transparent,
-                        modifier = Modifier.pagerTabIndicatorOffset(pagerState, tabPositions)
-                    )
-                }
-            ) {
-                tabList.forEachIndexed { index, tab ->
-                    Tab(
-                        selectedContentColor = Color.Black,
-                        unselectedContentColor = VeryLightGrey,
-                        icon = { Icon(painter = painterResource(id = tab.icon), contentDescription = null) },
-                        text = { Text(tab.title, color = Color.DarkGray) },
-                        selected = pagerState.currentPage == index,
-                        onClick = { coroutineScope.launch { pagerState.animateScrollToPage(index) } },
-                    )
-                }
+}
+
+@Preview
+@ExperimentalPagerApi
+@Composable
+fun DetailInfo(
+    detail: CharacterDetail = CharacterDetail(),
+    tabList: List<TabItem> = listOf(),
+    onClickEpisode: (Int) -> Unit = {}
+) {
+    Column(modifier = Modifier.fillMaxSize()) {
+        val pagerState = rememberPagerState()
+        val coroutineScope = rememberCoroutineScope()
+
+        TabRow(
+            backgroundColor = Color.White,
+            selectedTabIndex = pagerState.currentPage,
+            indicator = { tabPositions ->
+                TabRowDefaults.Indicator(
+                    color = Color.Transparent,
+                    modifier = Modifier.pagerTabIndicatorOffset(pagerState, tabPositions)
+                )
             }
+        ) {
+            tabList.forEachIndexed { index, tab ->
+                Tab(
+                    selectedContentColor = Color.Black,
+                    unselectedContentColor = VeryLightGrey,
+                    icon = { Icon(painter = painterResource(id = tab.icon), contentDescription = null) },
+                    text = { Text(tab.title, color = Color.DarkGray) },
+                    selected = pagerState.currentPage == index,
+                    onClick = { coroutineScope.launch { pagerState.animateScrollToPage(index) } },
+                )
+            }
+        }
 
-            HorizontalPager(
-                count = tabList.size,
-                state = pagerState
-            ) { page ->
-                when (page) {
-                    0 -> DetailInfoPage(detail)
-                    1 -> DetailEpisodesPage(detail.episode, onClickEpisode)
-                }
+        HorizontalPager(
+            count = tabList.size,
+            state = pagerState
+        ) { page ->
+            when (page) {
+                0 -> DetailInfoPage(detail)
+                1 -> DetailEpisodesPage(detail.episode, onClickEpisode)
             }
         }
     }
-
 }
