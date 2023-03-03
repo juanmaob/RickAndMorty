@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.seventhson.rickandmorty.domain.model.CharacterDetail
 import com.seventhson.rickandmorty.domain.useCases.GetCharacterDetailUseCase
 import com.seventhson.rickandmorty.ui.common.BaseViewModel
+import com.seventhson.rickandmorty.ui.navigation.Screen
 import com.seventhson.rickandmorty.utils.CustomException
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
@@ -25,7 +26,7 @@ class DetailViewModel @Inject constructor(
         //Con savedStateHandle podemos obtener los mismos argumentos
         // del composable donde se ha injectado el viewmodel.
         //Mirar en el grafo de navegación donde se añaden los argumentos
-        val id = savedStateHandle.get<Int>("id")
+        val id = savedStateHandle.get<Int>(Screen.Detail.id)
         id?.let { getCharacterDetail(it) }
     }
 
